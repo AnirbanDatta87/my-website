@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="container content-section">
+    <div class="row align-items-center justify-content-center">
+        <div class="col-md-8 alert alert-danger my-1 text-center">
+            <h5>You have been logged out!</h5>
+        </div>
+    </div>
+    <div class="row align-items-center justify-content-center">
+        <div class="col-md-8 border-top my-1 pt-2">
+            <small class="text-muted">
+                Explore!
+                <a class="btn btn-primary btn-sm d-inline-block ml-2 py-0" href="{% url 'login' %}">Sign in!</a>
+            </small>
+        </div>
+    </div>
+</div>
+{% endblock content %}

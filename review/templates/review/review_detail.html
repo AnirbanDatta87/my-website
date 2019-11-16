@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <!-- Review -->
+        <main class="card col-lg-9 mt-2 py-3 border-0">
+            <img class="card-img-top img-fluid" src="{{ review.thumbnail.url }}" alt="...">
+            <div class="card-body">
+                <div class="row card-text text-center justify-content-between align-items-center my-2">
+                    <div class="col col-lg-4 category">
+                        <a href="#">{{ review.category }}</a>
+                    </div>
+                    <div class="col col-lg-4 text-center">
+                        <div class="d-inline-block text-center">
+                            <a type="button" class="pr-1 my-auto text-primary">
+                                <i class="fab fa-github-square fa-2x"></i></a>
+                            <a type="button" class="pr-1 my-auto text-primary">
+                                <i class="fab fa-linkedin fa-2x"></i></a>
+                            <a type="button" class="pr-1 my-auto text-primary">
+                                <i class="fab fa-facebook-square fa-2x"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <h4 class="display-4 card-title text-center">{{ review.title }}</h4>
+                {% if review.author == user %}
+                <div class="card-text row justify-content-center align-items-center text-center">
+                    <div class="col col-md-6 col-lg-4">
+                        <a class="btn btn-sm btn-primary mb-2" href="{% url 'review-update' review.id %}">Update</a>
+                        <a class="btn btn-sm btn-danger mb-2" href="{% url 'review-delete' review.id %}">Delete</a>
+                    </div>
+                </div>
+                {% endif %}
+                <p class="card-text lead py-3">{{ review.tagline }}</p>
+                <hr class="text-secondary my-3">
+                <div class="card-text">
+                    {{ review.content|safe }}
+                </div>
+                <div class="card-footer row justify-content-between text-muted">
+                    <div class="col col-lg-4 author"><span>Anirban Datta</span></div>
+                    <div class="col col-lg-4 date text-right">{{ review.date | date:"N j, Y" }}</div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+{% endblock content %}

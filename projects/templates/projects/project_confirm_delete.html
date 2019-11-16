@@ -1,0 +1,23 @@
+ {% extends "base.html" %}
+
+
+ {% block content %}
+ <div class="row justify-content-center align-items-center">
+     <div class="col-md-6">
+         <div class="content-section px-2">
+             <form method="POST">
+                 {% csrf_token %}
+                 <fieldset class="form-group">
+                     <legend class="border-bottom text-danger my-2">Delete Project</legend>
+                     <p class="text-secondary font-weight-light">Are you sure you want to delete the Post <span
+                             class="font-weight-light text-primary">{{project.title}}</span>?</p>
+                 </fieldset>
+                 <div class="form-group">
+                     <button class="btn btn-sm btn-danger" type="submit">Delete</button>
+                     <a class="btn btn-sm btn-info" href="{% url 'project-detail' project.id %}">Cancel</a>
+                 </div>
+             </form>
+         </div>
+     </div>
+ </div>
+ {% endblock content %}

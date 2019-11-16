@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<main id="review" class="py-0 my-0">
+    <section id="review-intro" class="bg-dark py-5 my-0">
+        <div class="container pt-5 pt-md-0">
+            <div class="row max-viewport justify-content-center align-items-center text-center">
+                <div class="col-12 col-md-4 d-sm-block px-1 mx-auto bg-transparent">
+                    <div>
+                        <img src="{% static 'img/ami.jpg' %}" class="img-fluid img-thumbnail" alt="Ani">
+
+                    </div>
+                </div>
+                <div class="col-12 col-md-8 mx-auto">
+                    <div id="banner" class="jumbotron jumbotron-fluid mx-auto bg-transparent text-md-left">
+                        <div class="container-fluid">
+                            <h1 class="display-5 text-danger">Welcome to my book reviews!</h1>
+                            <p class="lead text-primary font-weight-bold">Here are some of my favourite books that I'd like to share with you.</p>
+                            <p class="ln text-light font-weight-light mb-0 paragraph">I am an avid reader. The
+                                number of books that I loved is too long to fit here. Howerver, there are some books
+                                that had a great impact on me, or I enjoyed immensely, that are not <i>too</i> well
+                                known.
+                                They cover a wide range of genres and topics. These books are very close to my
+                                heart, and I'd like to share these with everyone. So here you go, scroll down to take a look!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="review-list">
+        <div class="container">
+            <div class="row">
+                <main class="posts-listing col">
+                    <div class="container">
+                        <div class="row card-deck">
+                            <!-- Review -->
+                            {% for review in reviews %}
+                            <div class="card post p-2">
+                                <div class="card-img-top post-thumbnail"><a href="{{ review.get_absolute_url }}"><img
+                                            src="{{ review.thumbnail.url }}" alt="..." class="img-fluid"></a></div>
+                                <div class="card-body post-details">
+                                    <div class="card-text post-meta d-flex justify-content-between category">
+                                        <a href="#">{{ review.category }}</a>
+                                    </div>
+                                    <div class="card-text">
+                                        <a href="{{ review.get_absolute_url }}" target="_blank">
+                                            <h4 class="h4">{{ review.title|striptags }}</h4>
+                                        </a>
+                                    </div>
+
+                                    <div class="row card-text text-center justify-content-between align-items-center my-2">
+                                        <div class="col">
+                                            <a class="btn btn-block btn-info btn-sm" href="{{ review.get_absolute_url }}"
+                                                target="_blank" type="button">Read more!</a>
+                                        </div>
+                                        <div class="col text-center">
+                                            <div class="d-inline-block text-center">
+                                                <a type="button" class="pr-1 my-auto text-primary">
+                                                    <i class="fab fa-facebook-square fa-2x"></i></a>
+                                                <a type="button" class="pr-1 my-auto text-primary">
+                                                    <i class="fab fa-linkedin fa-2x"></i></a>
+                                                <a type="button" class="pr-1 my-auto text-primary">
+                                                   <i class="fab fa-goodreads fa-2x"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="text-secondary my-2">
+                                    <p class="card-text">{{ review.tagline|striptags }}</p>
+                                </div>
+                                <div class="card-footer post-footer d-flex align-items-center">
+                                    <a href="#" class="author d-flex align-items-center flex-wrap">
+                                        <div class="avatar"><img src="{{ review.author.profile.image.url }}" alt="..."
+                                                class="img-fluid"></div>
+                                        <div class="title"><span>{{ review.author }}</span></div>
+                                    </a>
+                                    <div class="col date"><i class="icon-clock"></i>{{ review.date | date:"N j, Y" }}</div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <!-- End Review -->
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock content %}
