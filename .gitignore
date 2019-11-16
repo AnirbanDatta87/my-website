@@ -12,8 +12,7 @@ dump.html
 
 # Static files
 
-static/
-media/
+
 assets/
 
 # Distribution / packaging
