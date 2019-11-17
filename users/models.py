@@ -21,7 +21,7 @@ class Profile(models.Model):
         return f'{self.user.username}\'s Profile'
 
     def save(self, *args, **kwargs):
-        super().save()
+        super().save(*args, **kwargs)
 
         img = Image.open(self.image.path)
         cropped_img = ImageOps.fit(img, (300, 300),
