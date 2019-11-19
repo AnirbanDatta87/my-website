@@ -4,6 +4,10 @@
     height: 50%;
 }
 
+.pointer {
+    cursor: pointer;
+}
+
 .banner-lead {
     font-size: 1.2rem;
     line-height: 1.4rem;
