@@ -25,7 +25,7 @@ SECRET_KEY = 'xrnzhe-2p1yt_6&%9_0+yvd$(+69#p(7%+sv@hs15cmnp3si4g'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['anirbandatta.pythonanywhere.com']
 
 
 # Application definition
@@ -139,3 +139,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = 'home'
 
 LOGIN_URL = 'login'
+
+MEDIA_URL = '/media/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
