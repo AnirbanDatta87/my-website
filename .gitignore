@@ -9,10 +9,9 @@ parse.py
 # C extensions
 *.so
 dump.html
+config.json
 
 # Static files
-
-
 assets/
 
 # Distribution / packaging
@@ -70,7 +69,7 @@ local_settings.py
 *.sublime-workspace
 *.code-workspace
 .vs/
-.vscode/ 
+.vscode/
 
 # Flask stuff:
 instance/
