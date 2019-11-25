@@ -10,6 +10,8 @@ parse.py
 *.so
 dump.html
 config.json
+settings.py
+db.sqlite3
 
 # Static files
 assets/
