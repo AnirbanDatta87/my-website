@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 
@@ -11,8 +12,12 @@
                     <h1 class="text-danger font-weight-bold">Thank you for visiting iπ!</h1>
                     <p class="lead text-primary font-weight-bold">I am Anirban. I am a
                         Business Analyst, Full Stack Python Developer and aspiring AI Engineer.</p>
-                    <p class="paragraph">I have a Masters in Physics, and a deep passion for Mathematics, Science and Technology. I created this blog as a platform to share my love of learning.</p>
-                    <p class="paragraph">Since my career switch from research to industry as a Business Analyst, I have gained experience in planning, designing and  improving business systems focused on Customer Engagement and Relatioship Management, Agent Recruitment and Sales Force Training management in the Banking, Financial Services and Insurance (BFSI) sector.</p>
+                    <p class="paragraph">I have a Masters in Physics, and a deep passion for Mathematics, Science and
+                        Technology. I created this blog as a platform to share my love of learning.</p>
+                    <p class="paragraph">Since my career switch from research to industry as a Business Analyst, I have
+                        gained experience in planning, designing and improving business systems focused on Customer
+                        Engagement and Relatioship Management, Agent Recruitment and Sales Force Training management in
+                        the Banking, Financial Services and Insurance (BFSI) sector.</p>
                     <p class="paragraph">I recently started my journey in the field of Artificial Intelligence.</p>
                     <h3 class="text-big font-weight-normal text-danger text-center">
                         Get in touch!
@@ -78,6 +83,102 @@
         </div>
         {% endfor %}
         <!-- End Post -->
+    </div>
+</section>
+
+<section id="skills">
+    <div class="container">
+        <div class="card text-center my-3  border-0">
+            <div class="card-body">
+                <h2 class="h2-responsive card-title font-weight-bold">My Skills</h2>
+                <p class="card-text lead">I love reading, and here are some of my absolute favourites that I'd like to
+                    share
+                    with you.</p>
+                <button class="btn btn-primary mr-1" type="button" data-toggle="collapse"
+                    data-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample3">
+                    Read More
+                </button>
+                <a href="{% url 'project-list' %}" target="_blank" class="btn btn-danger ml-1">View my Projects</a>
+                <div class="my-3 p-2 collapse" id="collapseExample3">
+                    <p class="paragraph">
+                        I adore books. While I don't get a chance to read as many these days, there are still some books
+                        I come
+                        across occasionally that are just too good to pass up. Here is a small collection of books that
+                        I have
+                        enjoyed immensely, or have been intrigued by, or are rare gems that I'd like to share with
+                        everyone. The
+                        books cover a wide range of topics. Let me know if you'd
+                        like me to review a book, or want to write a review yourself.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center justify-content-center text-center">
+            <!--Start Single Column-->
+            <div class="col-md-6 col-lg-4 text-center my-2">
+                <i class="fab fa-js fa-5x text-warning">
+                </i>
+                <h3 class="text-uppercase my-2">Web</h3>
+                <p class="paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui quas commodi
+                    obcaecati nesciunt temporibus perspiciatis! Illum ipsa odit eaque ratione!</p>
+            </div>
+            <!--End Single Column-->
+            <!--Start Single Column-->
+            <div class="col-md-6 col-lg-4 text-center my-2">
+                <i class="fas fa-database fa-5x text-success"></i>
+                <h3 class="text-uppercase my-2">Databases</h3>
+                <p class="paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui quas commodi
+                    obcaecati nesciunt temporibus perspiciatis! Illum ipsa odit eaque ratione!</p>
+            </div>
+            <!--End Single Column-->
+            <!--Start Single Column-->
+            <div class="col-md-6 col-lg-4 text-center my-2">
+                <i class="fab fa-python fa-5x text-primary"></i>
+                <h3 class="text-uppercase my-2">Python</h3>
+                <p class="paragraph">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui quas commodi
+                    obcaecati nesciunt temporibus perspiciatis! Illum ipsa odit eaque ratione!</p>
+            </div>
+            <!--End Single Column-->
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <div class="container">
+        <div class="card text-center my-3">
+            <div class="card-body">
+                <h4 class="card-title font-weight-bold text-secondary">Get in Touch With Me!</h4>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample5"
+                    aria-expanded="false" aria-controls="collapseExample5">
+                    Drop Me a Message!
+                </button>
+                <div class="border border-light my-3 p-2 collapse" id="collapseExample5">
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus veniam distinctio, pariatur
+                    nesciunt praesentium dolorem rem sapiente voluptates totam hic obcaecati doloremque, inventore,
+                    ipsam voluptas!
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center">
+            <div class="col-12 col-md-6 map">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3769.8659964686744!2d73.0049549962909!3d19.11353376038313!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c0c5ee8ba489%3A0x70617f00e012b47c!2zMTnCsDA2JzQ4LjYiTiA3M8KwMDAnMjEuOCJF!5e0!3m2!1sen!2sin!4v1574686995117!5m2!1sen!2sin"
+                    width="100%" height="400px" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+            </div>
+            <div class="col-12 col-md-6 contact-form">
+                <!-- Default form contact -->
+                <form method="POST" class="border border-light p-3" action=".">
+                    {% csrf_token %}
+                    
+                    {{ form|crispy }}
+            
+                    <!-- Send button -->
+                    <button class="btn btn-primary btn-block" type="submit">Send</button>
+                </form>
+                <!-- Default form contact -->
+            </div>
+        </div>
     </div>
 </section>
 

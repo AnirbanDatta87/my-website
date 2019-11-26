@@ -48,4 +48,10 @@
     font-size: 0.9rem;
 }
 
+textarea#id_message {
+    height: 10rem;
+}
 
+.asteriskField {
+    display: none!important;
+}
