@@ -33,3 +33,6 @@ def about(request):
             'form': form,
         }
         return render(request, 'portfolio/about.html', context)
+
+def mypage(request):
+    return render(request, 'mypage.html', {})

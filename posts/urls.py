@@ -7,7 +7,7 @@ from posts.views import (
     PostDetailView,
     PostCreateView,
     PostUpdateView,
-    PostDeleteView
+    PostDeleteView,
 )
 
 

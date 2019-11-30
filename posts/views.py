@@ -10,6 +10,7 @@ from django.views.generic import (
     CreateView,
     UpdateView,
     DeleteView,
+    TemplateView,
 )
 from .forms import CommentForm, PostForm
 from django.contrib.auth.decorators import login_required
