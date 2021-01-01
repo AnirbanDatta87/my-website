@@ -1,0 +1,491 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+<main id="index" class="py-0 my-0">
+  <!-- Hero Section -->
+  <section style="background: url({% static 'img/dark.jpg' %})" class="first py-5 my-0">
+    <div class="container">
+      <div class="row max-viewport justify-content-center align-items-center text-center">
+        <div class="col-12 col-md-4 d-sm-block px-1 mx-auto">
+          <div>
+            <img src="{% static 'img/ami3.png' %}" class="img-fluid main-img" alt="Ani">
+          </div>
+        </div>
+        <div class="col-12 col-md-8 mx-auto">
+          <div id="banner" class="jumbotron jumbotron-fluid mx-auto bg-transparent">
+            <div class="container-fluid">
+              <h1 class="display-4 text-danger font-weight-bold">Welcome to my blog!</h1>
+              <p class="lead banner-lead lead text-primary banner-sub-heading font-weight-bold">I am Anirban. I am a
+                Business Analyst, Pythonista and aspiring Data Scientist.</p>
+              <p class="ln text-light font-weight-light mb-0 paragraph">I am a passionate researcher and tech enthusiast who loves all things Mathematics, Science and
+                Technology, and their impact in our lives. I created this blog as a place to share my thoughts and ideas on various topics on science and emerging technologies as I learn about them, and document my journey into the fascinating world of AI programming.</p>
+              <p class="lead">
+                <div class="row text-center justify-content-center mx-auto">
+                  <div class="col-md-4 col-lg-3">
+                    <a class="btn btn-primary btn-block my-font" href="{% url 'post-list' %}" target="_blank"
+                      type="submit">Explore!</a>
+                  </div>
+                  <div class="col-md-4 col-lg-3">
+                    <a class="btn btn-danger btn-block my-font" href="{% url 'about' %}" target="_blank"
+                      type="submit">About Me</a>
+                  </div>
+                </div>
+              </p>
+              <!-- <hr class="bg bg-light mx-5 my-4"> -->
+              <h3 class="text-big font-weight-normal text-danger">
+                Get in touch!
+              </h3>
+              <div>
+                <ul class="social-menu fa-lg mt-4">
+                  <li class="list-inline-item"><a target="_blank" href="https://www.facebook.com/anirban.datta.311"><i
+                        class="fab fa-facebook-f"></i></a></li>
+                  <li class="list-inline-item"><a target="_blank"
+                      href="https://www.linkedin.com/in/anirban-datta-a4a2a818/"><i class="fab fa-linkedin-in"></i></a>
+                  </li>
+                  <li class="list-inline-item"><a target="_blank" href="https://twitter.com/teertha_d"><i
+                        class="fab fa-twitter"></i></a></li>
+                  <li class="list-inline-item"><a target="_blank" href="https://github.com/AnirbanDatta87"><i
+                        class="fab fa-github"></i></a></li>
+                  <li class="list-inline-item"><a target="_blank" href="mailto:teertha.d87@gmail.com"><i
+                        class="fas fa-envelope"></i></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <a href=".intro" class="continue link-scroll"><i class="fa fa-long-arrow-down"></i> Scroll Down</a> -->
+  </section>
+  
+  <!-- End Hero Section -->
+
+  <!-- Intro Section -->
+  <section class="intro">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col">
+          <h3 class="h3">Featured Articles</h3>
+          <p class="lead">Here are some of the featured articles from the blog. The articles cover a wide range of
+            topics
+            from Artificial Intelligence and Machine Learning to general Programming, Mathematics, Statistics, Physics,
+            Business Analytics and everything in between. Have a look around, and let me know what you think in the
+            comments!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Intro Section -->
+
+  <!-- Featured Section -->
+  <section class="featured-posts no-padding-top">
+    <div class="container">
+      <!-- Post -->
+      {% for obj in object_list %}
+      <div class="row d-flex align-items-stretch">
+        {% if forloop.counter|divisibleby:2 %}
+        <div class="image col-lg-5"><img src="{{ obj.thumbnail.url }}" alt="..."></div>
+        <div class="text col-lg-7">
+          <div class="text-inner d-flex align-items-center">
+            <div class="content">
+              <header class="post-header">
+                <div class="category text-primary">
+                  {% for cat in obj.categories.all %}
+                  <a href="#">{{ cat }}</a>
+                  {% endfor %}
+                </div>
+                <h2 class="h4">{{ obj.title }}</h2>
+              </header>
+              <p>{{ obj.overview }}</p>
+              <p>
+                <a href="{{ obj.get_absolute_url }}" class="btn btn-primary my-2 my-sm-0 margin-left-1 text-light"
+                  target="_blank">Read More!</a>
+              </p>
+              <hr class="text-secondary">
+              <footer class="post-footer d-inline-flex align-items-center justify-content-center mt-1 pt-0">
+                <a href="#" class="author d-inline-flex align-items-center flex-wrap">
+                  <div class="avatar"><img src="{{ obj.author.profile_picture.url }}" alt="..." class="img-fluid"></div>
+                  <div class="title"><span>{{ obj.author }}</span></div>
+                </a>
+                <div class="date"><i class="icon-clock"></i>{{ obj.timestamp|timesince }} ago </div>
+                <div class="comments"><i class="icon-comment"></i>{{ obj.comment_count }}</div>
+              </footer>
+            </div>
+          </div>
+        </div>
+        {% else %}
+        <div class="text col-lg-7">
+          <div class="text-inner d-flex align-items-center">
+            <div class="content">
+              <header class="post-header">
+                <div class="category text-primary">
+                  {% for cat in obj.categories.all %}
+                  <a href="#">{{ cat }}</a>
+                  {% endfor %}
+                </div>
+                <a href="{{ obj.get_absolute_url }}">
+                  <h2 class="h4">{{ obj.title }}</h2>
+                </a>
+              </header>
+              <p>{{ obj.overview }}</p>
+              <p>
+                <a href="{{ obj.get_absolute_url }}" class="btn btn-primary my-2 my-sm-0 margin-left-1 text-light"
+                  target="_blank">Read More!</a>
+              </p>
+              <hr class="text-secondary">
+              <footer class="post-footer d-inline-flex align-items-center justify-content-center  mt-1 pt-0">
+                <a href="#" class="author d-inline-flex align-items-center flex-wrap">
+                  <div class="avatar"><img src="{{ obj.author.profile_picture.url }}" alt="..." class="img-fluid"></div>
+                  <div class="title"><span>{{ obj.author }}</span></div>
+                </a>
+                <div class="date"><i class="icon-clock"></i>{{ obj.timestamp|timesince }} ago </div>
+                <div class="comments"><i class="icon-comment"></i>{{ obj.comment_count }}</div>
+              </footer>
+            </div>
+          </div>
+        </div>
+        <div class="image col-lg-5"><img src="{{ obj.thumbnail.url }}" alt="..."></div>
+        {% endif %}
+      </div>
+      {% endfor %}
+      <!-- End Post -->
+    </div>
+  </section>
+  <!-- End Featured Section -->
+
+  <!-- Reviews -->
+  <section class="review latest-posts">
+    <div class="container">
+      <div class="card text-center my-3  border-0">
+        <div class="card-body">
+          <h2 class="h2-responsive card-title font-weight-bold">My Book Reviews</h2>
+          <p class="card-text lead">I love reading, and here are some of my absolute favourites that I'd like to share
+            with you.</p>
+          <button class="btn btn-primary mr-1" type="button" data-toggle="collapse" data-target="#collapseExample2"
+            aria-expanded="false" aria-controls="collapseExample2">
+            Read More
+          </button>
+          <a href="{% url 'review-list' %}" target="_blank" class="btn btn-danger ml-1">All Reviews</a>
+          <div class="my-3 p-2 collapse" id="collapseExample2">
+            <p class="paragraph">
+              I adore books. While I don't get a chance to read as many these days, there are still some books I come
+              across occasionally that are just too good to pass up. Here is a small collection of books that I have
+              enjoyed immensely, or have been intrigued by, or are rare gems that I'd like to share with everyone. The
+              books cover a wide range of topics. Let me know if you'd
+              like me to review a book, or want to write a review yourself.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        {% for review in reviews %}
+        <div class="post col-md-4">
+          <div class="post-thumbnail">
+            <a href="#"><img src="{{ review.thumbnail.url }}" alt="..." class="img-fluid"></a>
+          </div>
+          <div class="post-details">
+            <div class="post-meta d-flex justify-content-between">
+              <div class="date"><i class="icon-clock"></i>{{ review.date | date:"N j, Y" }}</div>
+              <div class="category">
+                <a href="#">{{ review.category }}</a>
+              </div>
+            </div><a href="{{ review.get_absolute_url }}">
+              <h3 class="h4">{{ review.title }}</h3>
+            </a>
+            <p class="text-secondary paragraph">{{ review.tagline }}</p>
+            <hr class="bg-light my-2">
+            <p>
+              <a href="{{ review.get_absolute_url }}" class="btn btn-primary my-2 my-sm-0 margin-left-1 text-light"
+                target="_blank">Read More!</a>
+            </p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  <!--End Reviews -->
+
+  <!-- Start Inspire -->
+  <section id="Inspire">
+    <div class="container my-2">
+
+      <div class="card text-center my-3  border-0">
+
+        <div class="card-body">
+          <h2 class="h2-responsive card-title font-weight-bold">Amazing places from around the Web</h2>
+          <p class="card-text lead">Like my blog? Here are some amazing places from around the web that I love, and
+            would like to share with you!</p>
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample2"
+            aria-expanded="false" aria-controls="collapseExample2">
+            Read More
+          </button>
+          <div class="my-3 p-2 collapse" id="collapseExample2">
+            <p class="paragraph">
+              So much to explore, so much to learn, and so little time! With so much information now-a-days, I sometimes
+              feel obvewhelmed...and it has certaily been the case for my journey in Business Analytics, and now in AI
+              and
+              Machine Learning. I have therefore handpicked a number of sites that I know will be worth your time,
+              regardless of your field of interest. Take a look, and let me know if you'd like me to add more to this
+              list!
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="card-deck-inspire">
+
+        <div class="card">
+
+          <img class="card-img-top" src="{% static 'img/aitrends.jpg' %}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title font-weight-bold text-success">AI Trends</h5>
+            <p class="card-text paragraph">This is one of the best places to know about the latest developments in AI
+              research, and it covers a broad range of topics which includes business, investments, technology, webinar,
+              research, and resources.</p>
+          </div>
+          <div class="card-footer border-0">
+            <a class="btn btn-success btn-block" href="https://www.aitrends.com/" target="_blank">Visit
+              Site!</a>
+          </div>
+        </div>
+        <div class="card">
+
+          <img class="card-img-top" src="{% static 'img/aim.jpg' %}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title font-weight-bold text-info">Analytics India</h5>
+            <p class="card-text paragraph">Analytics India magazine is the premier platform for AI, Machine Learning,
+              Data
+              Science and analytics news in India, and it also publishes great articles on these topics aimed at a
+              general
+              audience.</p>
+          </div>
+          <div class="card-footer border-0">
+            <a class="btn btn-info btn-block" href="https://analyticsindiamag.com/" target="_blank">Visit
+              Site!</a>
+          </div>
+        </div>
+        <div class="card">
+
+          <img class="card-img-top" src="{% static 'img/medium.jpg' %}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title font-weight-bold text-warning">Medium</h5>
+            <p class="card-text paragraph">Medium is a publishing platform where people can write and read important,
+              insightful stories on the topics that matter most to them and share ideas with the world. It is amazing.
+              Give it a try, you may be surprised!</p>
+          </div>
+          <div class="card-footer border-0">
+            <a class="btn btn-warning btn-block" href="https://www.medium.com/" target="_blank">Visit
+              Site!</a>
+          </div>
+        </div>
+        <div class="card">
+
+          <img class="card-img-top" src="{% static 'img/curiosity.jpg' %}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title font-weight-bold text-danger">Curiosity</h5>
+            <p class="card-text paragraph">This gem of a website has a tremendous amount of interesting stories and
+              articles that cover innovations and breakthroughs in every conceivable area of human endeavour. Take a
+              peek,
+              it might just pique your curiosity!</p>
+          </div>
+          <div class="card-footer border-0">
+            <a class="btn btn-danger btn-block" href=" https://curiosity.com/" target="_blank">Visit Site!</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Inspire -->
+
+  <!-- Latest Posts -->
+  <section class="latest-posts">
+    <div class="container">
+      <div class="card text-center my-3  border-0">
+        <div class="card-body">
+          <h2 class="h2-responsive card-title font-weight-bold">Latest from the Blog</h2>
+          <p class="card-text lead">Here are the latest articles from the blog.</p>
+          <button class="btn btn-primary mr-1" type="button" data-toggle="collapse" data-target="#collapseExample3"
+            aria-expanded="false" aria-controls="collapseExample3">
+            Read More
+          </button>
+          <a href="{% url 'post-list' %}" target="_blank" class="btn btn-danger ml-1">All Articles</a>
+          <div class="my-3 p-2 collapse" id="collapseExample3">
+            <p class="paragraph">
+              I write articles on a wide variety of topics, mostly focused on Programming, Mathematics, Science and Technology. You can expect to find articles on anything from AI, Blockchain, Quantum Computing, Astronomy to Biology, Sociology and Music...take a look!
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        {% for obj in latest %}
+        <div class="post col-md-4">
+          <div class="post-thumbnail">
+            <a href="#"><img src="{{ obj.thumbnail.url }}" alt="..." class="img-fluid"></a>
+          </div>
+          <div class="post-details">
+            <div class="post-meta d-flex justify-content-between">
+              <div class="date"><i class="icon-clock"></i>{{ obj.timestamp|timesince }} ago </div>
+              <div class="comments"><i class="icon-comment"></i>{{ obj.comment_count }}</div>
+              <div class="category">
+                {% for cat in obj.categories.all %}
+                <a href="#">{{ cat }}</a>
+                {% endfor %}
+              </div>
+            </div><a href="{{ obj.get_absolute_url }}">
+              <h3 class="h4">{{ obj.title }}</h3>
+            </a>
+            <p class="text-muted">{{ obj.overview|striptags }}</p>
+            <hr class="bg-light my-2">
+            <p>
+              <a href="{{ obj.get_absolute_url }}" class="btn btn-primary my-2 my-sm-0 margin-left-1 text-light"
+                target="_blank">Read More!</a>
+            </p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  <!--End Latest Posts -->
+
+  <!-- Newsletter Section -->
+  <section class="newsletter no-padding-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h2>Subscribe to Newsletter</h2>
+          <p class="lead">If you subscribe to my newsletter, I may ocassionally send you notifications about new
+            articles and reviews that I write. No ads or spam nonsense, and you can unscribe at any time. </p>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="form-holder">
+            <form action="." method="POST">
+              {% csrf_token %}
+              <div class="form-group">
+                <input type="email" name="email" id="email" placeholder="Type your email address...">
+                <button type="submit" class="submit">Subscribe!</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Newsletter Section -->
+
+  <!-- Quotes -->
+  <section class="Quotes">
+    <div class="container text-center py-2">
+
+      <!-- Section heading -->
+      <div class="container">
+        <h2 class="h2-responsive font-weight-bold my-1 my-md-4">My Favourite Quotes</h2>
+        <!-- Section description -->
+        <p class="w-responsive mx-auto my-4 text-dark lead">Thank you for visiting my blog! Here are some of my favourite
+          quotes that have inspired me to learn, explore and create...</p>
+      </div>
+      <!--Grid row-->
+      <div class="row text-center">
+
+        <!--Grid column-->
+        <div class="col-md-4 mb-2 mb-md-5">
+          <div class="testimonial">
+            <!--Avatar-->
+            <div class="avatar mx-auto">
+              <img src="{% static 'img/feynman.jpg' %}" class="rounded-circle z-depth-1 img-fluid">
+            </div>
+            <!--Content-->
+            <h4 class="font-weight-bold mt-4">Richard Feynman</h4>
+            <p class="font-weight-normal text-secondary paragraph">
+              <i class="fas fa-quote-left fa-lg pr-2 text-dark"></i>Perhaps one day we will have machines that can cope
+              with approximate task descriptions, but in the meantime, we have to be very prissy about how we tell
+              computers to do things.</p>
+            <!--Review-->
+          </div>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-md-4 mb-2 mb-md-5">
+          <div class="testimonial">
+            <!--Avatar-->
+            <div class="avatar mx-auto">
+              <img src="{% static 'img/gates.jpg' %}" class="rounded-circle z-depth-1 img-fluid">
+            </div>
+            <!--Content-->
+            <h4 class="font-weight-bold mt-4">Bill Gates</h4>
+            <p class="font-weight-normal text-secondary paragraph">
+              <i class="fas fa-quote-left fa-lg pr-2 text-dark"></i>The first rule of any technology used in a business
+              is
+              that automation applied to an efficient operation will magnify the efficiency. The second is that
+              automation
+              applied to an inefficient operation will magnify the inefficiency.
+            </p>
+            <!--Review-->
+          </div>
+
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-md-4 mb-2 mb-md-5">
+          <div class="testimonial">
+            <!--Avatar-->
+            <div class="avatar mx-auto">
+              <img src="{% static 'img/sadhguru.jpg' %}" class="rounded-circle z-depth-1 img-fluid">
+            </div>
+            <!--Content-->
+            <h4 class="font-weight-bold mt-4">Sadhguru</h4>
+            <p class="font-weight-normal text-secondary paragraph">
+              <i class="fas fa-quote-left fa-lg pr-2 text-dark"></i>What Artificial Intelligence means is accumulation
+              of
+              information, analyzing it and projecting it the way you want...will no more be considered a valuable thing
+              in human faculties because a simple gadget will do that much better than any human beings.</p>
+            <!--Review-->
+          </div>
+        </div>
+        <!--Grid column-->
+      </div>
+      <!--Grid row-->
+    </div>
+  </section>
+  <!--End Quotes -->
+
+  <!-- Gallery Section-->
+  <section class="gallery no-padding">
+    <div class="row">
+      <div class="mix col-lg-3 col-md-3 col-sm-6">
+        <div class="item"><a href="{% static 'img/gallery-1.jpg' %}" data-fancybox="gallery" class="image"><img
+              src="{% static 'img/gallery-1.jpg' %}" alt="..." class="img-fluid">
+            <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div>
+          </a></div>
+      </div>
+      <div class="mix col-lg-3 col-md-3 col-sm-6">
+        <div class="item"><a href="{% static 'img/gallery-2.jpg' %}" data-fancybox="gallery" class="image"><img
+              src="{% static 'img/gallery-2.jpg' %}" alt="..." class="img-fluid">
+            <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div>
+          </a></div>
+      </div>
+      <div class="mix col-lg-3 col-md-3 col-sm-6">
+        <div class="item"><a href="{% static 'img/gallery-3.jpg' %}" data-fancybox="gallery" class="image"><img
+              src="{% static 'img/gallery-3.jpg' %}" alt="..." class="img-fluid">
+            <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div>
+          </a></div>
+      </div>
+      <div class="mix col-lg-3 col-md-3 col-sm-6">
+        <div class="item"><a href="{% static 'img/gallery-4.jpg' %}" data-fancybox="gallery" class="image"><img
+              src="{% static 'img/gallery-4.jpg' %}" alt="..." class="img-fluid">
+            <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div>
+          </a></div>
+      </div>
+    </div>
+  </section>
+  <!-- End Gallery Section -->
+
+</main>
+
+{% endblock content %}
